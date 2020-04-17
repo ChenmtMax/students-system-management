@@ -1,29 +1,30 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import addStudent from '../views/systemIndex/addStudent.vue'
+import studentList from '../views/systemIndex/studentList.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
-    name: 'Home',
-    component: Home
-  },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    path: '/add_student',
+    name: 'addStudent',
+    component: addStudent
+  }, {
+    path: '/student_list',
+    name: 'studentList',
+    component: studentList
+  }, {
+    path: '*',
+    redirect: '/student_list'
   }
 ]
 
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes
+  routes,
+  linkActiveClass: 'active' // 设置导航栏选中样式名
 })
 
 export default router
